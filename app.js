@@ -107,7 +107,7 @@ app.use('/listings/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.get("/", async (req, res) => {
-    const listings = await Listing.find({});
+    const listings = await Listing.find({}).populate('reviews');
     res.render("listings/listings.ejs", { listings });
 });
 
