@@ -9,7 +9,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const ExpressError = require('./utils/ExpressError.js')
+const Listing = require('./models/listing.js');
+const ExpressError = require('./utils/ExpressError.js');
 const listingRoutes = require('./routes/listing.js');
 const reviewRoutes = require('./routes/review.js');
 const userRoutes = require('./routes/user.js');
@@ -45,7 +46,6 @@ app.use(express.urlencoded({ extended: true }));
 app.engine('ejs', ejsMate);
 
 
-
 const store = MongoStore.create({
     mongoUrl: db_url,
    
@@ -55,7 +55,6 @@ const store = MongoStore.create({
 store.on("error", () =>{
     console.log("Error in Mongo  session", err);
 })
-
 
 const sessionOptions = {
     store,
@@ -107,7 +106,10 @@ app.use('/listings', listingRoutes);
 app.use('/listings/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
-
+app.get("/", async (req, res) => {
+    const listings = await Listing.find({});
+    res.render("listings/listings.ejs", { listings });
+});
 
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));
