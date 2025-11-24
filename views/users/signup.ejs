@@ -1,0 +1,35 @@
+<%-layout('/layouts/boilerplate')%>
+
+    <body>
+        <div class="row mt-3">
+            <div class="col-6 offset-3">
+                <form class="listing-form needs-validation" action="/signup" method="post" novalidate>
+
+                    <h2>Signup on Desthub :) </h2>
+
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Username:</label>
+                        <input type="text" id="Username" name="username" placeholder="Enter username"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input id="email" name="email" placeholder="abc@gmail.com" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password </label>
+                        <input type="password" id="password" name="password" placeholder="Enter Password"
+                            class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn btn-dark add-btn mb-3 mt-2">Signup</button>
+
+                </form>
+
+            </div>
+        </div>
+
+
+    </body>
